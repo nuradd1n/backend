@@ -15,7 +15,7 @@ import (
 var DB *sql.DB
 
 func InitDB() error {
-	db, err := sql.Open("mysql", "root:8755@tcp(localhost:3306)/projectgo")
+	db, err := sql.Open("mysql", "root:8755@tcp(localhost:3306)/myproject")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -111,8 +111,8 @@ func GetProject() ([]models.Project, error) {
 	return projects, nil
 }
 
-func CreateProject(name, deadline, owner, string, users int) error {
-	query := "INSERT INTO organizations (name, deadline, owner, users) VALUES (?, ?, ?, ?)"
+func CreateProject(name, deadline, owner string, users int) error {
+	query := "INSERT INTO projects (name, deadline, owner, users) VALUES (?, ?, ?, ?)"
 	_, err := DB.Exec(query, name, deadline, owner, users)
 	if err != nil {
 		return err

@@ -67,7 +67,7 @@ func CreateProjectPage(w http.ResponseWriter, r *http.Request) {
 			ErrorPage(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		err = db.AddOrganization(name, deadline, owner, users)
+		err = db.CreateProject(name, deadline, owner, users)
 		if err != nil {
 			ErrorPage(w, err.Error(), http.StatusInternalServerError)
 			return
