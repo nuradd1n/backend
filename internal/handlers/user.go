@@ -1,16 +1,14 @@
 package handlers
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
-	"strconv"
 
 	"github.com/nuradd1n/backend/db"
 )
 
-func GetProjectsPage(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/projects" {
+func GetUsersPage(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/users" {
 		ErrorPage(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
@@ -21,58 +19,48 @@ func GetProjectsPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl, err := template.ParseFiles("./ui/templates/base.html", "./ui/templates/projects.html")
+	users, err := db.GetUsers()
 	if err != nil {
 		ErrorPage(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	projects, err := db.GetProject()
+	tmpl, err := template.ParseFiles("./ui/templates/base.html", "./ui/templates/GetUsers.html")
 	if err != nil {
 		ErrorPage(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	tmpl.Execute(w, projects)
+	tmpl.Execute(w, users)
 }
 
-func CreateProjectPage(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/projects/create" {
+func RegisterUserPage(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/users/register" {
 		ErrorPage(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 		return
 	}
+
 	switch r.Method {
 	case "GET":
-		tmpl, err := template.ParseFiles("./ui/templates/CreateProjects.html")
+		tmpl, err := template.ParseFiles("./ui/templates/registerUser.html")
 		if err != nil {
 			ErrorPage(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
+
 		tmpl.Execute(w, nil)
 
 	case "POST":
-		err := r.ParseForm()
-		if err != nil {
-			ErrorPage(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
+		fullName := r.FormValue("full_name")
+		email := r.FormValue("email")
+		phone := r.FormValue("phone")
 
-		name := r.FormValue("name")
-		deadline := r.FormValue("deadline")
-		owner := r.FormValue("owner")
-		fmt.Println(name, deadline, owner, r.FormValue("number"), "--")
-		users, err := strconv.Atoi(r.FormValue("number"))
-		if err != nil {
-			fmt.Println("error atoi")
-			ErrorPage(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		err = db.CreateProject(name, deadline, owner, users)
+		err := db.AddUser(fullName, email, phone)
 		if err != nil {
 			ErrorPage(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		http.Redirect(w, r, "/projects", http.StatusSeeOther)
+		http.Redirect(w, r, "/users", http.StatusSeeOther)
 
 	default:
 		w.Header().Set("Allow", http.MethodGet)

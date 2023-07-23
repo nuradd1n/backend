@@ -1,0 +1,32 @@
+{{ define "content" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Users</title>
+    <link href="/ui/static/GetUsers.css" rel="stylesheet">
+</head>
+<body>
+        
+    <h2>List of Users</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        {{ range . }}
+        <tr>
+            <td>{{ .ID }}</td>
+            <td>{{ .FullName }}</td>
+            <td>{{ .Email }}</td>
+            <td>{{ .Phone }}</td>
+        </tr>
+        {{ end }}
+    </table>
+</body>
+</html>
+{{ end }}

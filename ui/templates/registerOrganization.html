@@ -11,14 +11,22 @@
         
     <h2>Register Organization</h2>
     <form action="/organization/register" method="POST" >
-        <!-- Add registration form fields here -->
-        <input type="text" name="bin" id="bin" placeholder="BIN" required>
+        <input type="text" name="bin" id="bin" placeholder="BIN" minlength="12"  required>
         <input type="text" placeholder="Name" name="name" required>
         <input type="text" placeholder="Address" name="address" required>
-        <input type="number" placeholder="Number of Workers" name="number" required>
+        <label for="users">Select Users:</label>
+        <select id="users" name="users[]" multiple required>
+            {{range .Users}}
+            <option value="{{.FullName}}">{{.FullName}}</option>
+            {{end}}
+        </select><br><br>
+
+        <!-- <select name="users[]" multiple required>
+            {{ range .Users }}
+                <option value="{{ .FullName }}">{{ .FullName }}</option>
+            {{ end }}
+        </select> -->
         <button type="submit">Register</button>
     </form>
-
-
 </body>
 </html>

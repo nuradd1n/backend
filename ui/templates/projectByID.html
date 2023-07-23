@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Details</title>
+    <link href="/ui/static/style.css" rel="stylesheet">
+    <link href="/ui/static/projectByID.css" rel="stylesheet">
+
+</head>
+<body>
+    <h2>Project Details</h2>
+    <div>
+        <p>ID: {{ .ID }}</p>
+        <p>Name: {{ .Name }}</p>
+        <p>Deadline: {{ .Deadline }}</p>
+        <p>Owner: {{ .Owner }}</p>
+        <p>Users: {{ .Users }}</p>
+    </div>
+    <a class="button-go-back" href="/projects">Back to Projects List</a>
+</body>
+</html>

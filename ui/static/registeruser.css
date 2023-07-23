@@ -1,14 +1,8 @@
-/* Общие стили */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
-  }
-  
-  h2 {
+/* Стили для заголовка и формы */
+h2 {
     text-align: center;
-    margin-top: 30px;
+    color: #333;
+    margin-top: 20px;
   }
   
   form {
@@ -18,8 +12,12 @@ body {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
+  /* Стили для полей ввода */
   input {
     display: block;
     width: 100%;
@@ -27,7 +25,6 @@ body {
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    transition: border-color 0.3s ease;
   }
   
   input:focus {
@@ -35,9 +32,12 @@ body {
     border-color: #2f8884;
   }
   
-  button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #2f8884;
+  /* Стили для кнопки */
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -45,11 +45,11 @@ body {
     transition: background-color 0.3s ease;
   }
   
-  button[type="submit"]:hover {
-    background-color: #1b635f;
+  button:hover {
+    background-color: #555;
   }
   
-  button[type="submit"]:active {
-    background-color: #144d4a;
+  button:active {
+    background-color: #222;
   }
   

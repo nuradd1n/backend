@@ -5,5 +5,5 @@ type Organization struct {
 	BIN     string
 	Name    string
 	Address string
-	Workers int
+	Users   string
 }

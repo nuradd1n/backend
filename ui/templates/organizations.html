@@ -16,7 +16,7 @@
             <th>BIN</th>
             <th>Name</th>
             <th>Address</th>
-            <th>Workers</th>
+            <th>Users</th>
         </tr>
         {{ range . }}
         <tr>
@@ -24,7 +24,8 @@
             <td>{{ .BIN }}</td>
             <td>{{ .Name }}</td>
             <td>{{ .Address }}</td>
-            <td>{{ .Workers }}</td>
+            <td>{{ .Users }}</td>
+            <td><a href="/organization/{{ .ID }}">View</a></td>
         </tr>
         {{ end }}
     </table>

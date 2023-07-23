@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/ui/static/createprojects.css" rel="stylesheet">
+</head>
+<body>
+        
+    <h2>Create Project</h2>
+    <form action="/projects/create" method="POST">
+        <input type="text" name="name" placeholder="Project Name" required>
+        <label for="deadline">Deadline:</label>
+		<input type="date" id="deadline" name="deadline" required>    
+        <!-- Добавляем выпадающий список для выбора организации в поле owner -->
+        <select name="owner">
+            {{ range .Organizations }}
+            <option value="{{ .Name }}">{{ .Name }}</option>
+            {{ end }}
+        </select>
+    
+        <button type="submit">Create Project</button>
+    </form>
+
+
+</body>
+</html>
